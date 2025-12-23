@@ -1,7 +1,7 @@
-const Contact = require("../models/Contact");
+import Contact from "../models/Contact.js"; // ✅ use .js extension
 
 // GET contact info
-const getContactInfo = async (req, res) => {
+export const getContactInfo = async (req, res) => {
   try {
     const contact = await Contact.findOne();
     if (!contact) {
@@ -14,7 +14,7 @@ const getContactInfo = async (req, res) => {
 };
 
 // CREATE or UPDATE contact info
-const createOrUpdateContact = async (req, res) => {
+export const createOrUpdateContact = async (req, res) => {
   try {
     const { heading, subheading, btnText } = req.body;
 
@@ -33,9 +33,4 @@ const createOrUpdateContact = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};
-
-module.exports = {
-  getContactInfo,
-  createOrUpdateContact,
 };

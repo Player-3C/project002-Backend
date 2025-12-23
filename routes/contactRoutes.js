@@ -1,12 +1,8 @@
-const express = require("express");
+import express from "express";
+import { getContactInfo, createOrUpdateContact } from "../controllers/contactController.js";
+import protect from "../middleware/authMiddleware.js";
+
 const router = express.Router();
-
-const {
-  getContactInfo,
-  createOrUpdateContact,
-} = require("../controllers/contactController");
-
-const protect = require("../middleware/authMiddleware");
 
 // Public route
 router.get("/", getContactInfo);
@@ -14,4 +10,5 @@ router.get("/", getContactInfo);
 // Admin-only route
 router.post("/", protect, createOrUpdateContact);
 
-module.exports = router;
+// ✅ Export default for ES Modules
+export default router;
